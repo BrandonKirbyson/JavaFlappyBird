@@ -19,7 +19,7 @@ public class Bird implements Renderable {
 
     private static final int x = 20;
 
-    private double y = Renderer.getHeight() / 2;
+    private double y = (double) Renderer.getHeight() / 2;
 
     private double yVel = 0;
     private final static double gravity = 0.05;

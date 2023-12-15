@@ -7,9 +7,10 @@ import java.util.concurrent.TimeUnit;
 
 public class Game {
     public static void main(String[] args) {
+        Renderer.hideCursor();
         Controller controller = new Controller();
         new Thread(controller).start();
-        Bird bird = new Bird();
+        final Bird bird = new Bird();
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
         executorService.scheduleAtFixedRate(() -> {
@@ -21,5 +22,10 @@ public class Game {
 
             Renderer.render(new Renderable[]{bird});
         }, 0, 16, TimeUnit.MILLISECONDS);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            executorService.shutdown();
+            Renderer.showCursor();
+        }));
     }
 }

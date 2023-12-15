@@ -60,7 +60,7 @@ public class Renderer {
             case CENTER -> -overlayArr.length / 2;
             case BOTTOM -> -overlayArr.length;
         };
-        
+
         for (int i = 0; i < overlayArr.length; i++) {
             final int row = position.getY() + i + yOffset;
             if (row < 0 || row >= frame.length) {
@@ -77,6 +77,22 @@ public class Renderer {
                     frame[row] = frame[row].substring(0, col) + overlayChar + frame[row].substring(col + 1);
                 }
             }
+        }
+    }
+
+    public static void hideCursor() {
+        runCommand("tput civis", "Error hiding cursor ");
+    }
+
+    public static void showCursor() {
+        runCommand("tput cnorm", "Error showing cursor ");
+    }
+
+    private static void runCommand(String command, String errorMessage) {
+        try {
+            new ProcessBuilder("bash", "-c", command).inheritIO().start().waitFor();
+        } catch (Exception e) {
+            System.out.println(errorMessage + e);
         }
     }
 }
