@@ -1,19 +1,16 @@
-import Render.Overlay;
-import Render.Position;
-import Render.Renderable;
-import Render.Renderer;
+import Render.*;
 
 public class Bird implements Renderable {
-    private static final String[] birdArr = {
+    private static final String[] birdArr = Colors.YELLOW.apply(new String[]{
             " \\  _  ",
-            "  \\(.)<",
+            "  \\(.)" + Colors.RED.apply("<"),
             "  (___)",
-    };
-    private static final String[] birdArrFlap = {
+    });
+    private static final String[] birdArrFlap = Colors.YELLOW.apply(new String[]{
             "    _  ",
             "  /(.)<",
             " /(___)",
-    };
+    });
 
     private int flap = 0;
 
