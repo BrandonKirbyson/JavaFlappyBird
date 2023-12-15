@@ -17,7 +17,7 @@ public class Renderer {
     }
 
     private static String[] getBlankFrame() {
-        String line = "|" + " ".repeat(width) + "|";
+        String line = "|" + Colors.CYAN_BACKGROUND.apply(" ".repeat(width)) + "|";
         String horizontalLine = "|" + "-".repeat(width) + "|";
         String[] frame = new String[height];
         Arrays.fill(frame, line);
@@ -46,19 +46,35 @@ public class Renderer {
         System.out.println(String.join("\n", frame));
     }
 
+    private static int getRealLength(String str) {
+        int length = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == '\u001B') {
+                while (str.charAt(i) != 'm') {
+                    i++;
+                }
+                continue;
+            }
+            length++;
+        }
+        return length;
+    }
+
     private static void addOverlay(Overlay overlay) {
         final String[] overlayArr = overlay.getOverlayArr();
         final Position position = overlay.getPosition();
 
+        int length = getRealLength(overlayArr[0]);
+
         final int xOffset = switch (position.getHorizontalAlignment()) {
             case LEFT -> 0;
-            case MIDDLE -> -overlayArr[0].length() / 2;
-            case RIGHT -> -overlayArr[0].length();
+            case MIDDLE -> -length / 2;
+            case RIGHT -> -length;
         };
         final int yOffset = switch (position.getVerticalAlignment()) {
             case TOP -> 0;
-            case CENTER -> -overlayArr.length / 2;
-            case BOTTOM -> -overlayArr.length;
+            case CENTER -> -length / 2;
+            case BOTTOM -> -length;
         };
 
         for (int i = 0; i < overlayArr.length; i++) {

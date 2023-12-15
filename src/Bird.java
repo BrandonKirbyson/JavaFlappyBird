@@ -1,12 +1,12 @@
 import Render.*;
 
 public class Bird implements Renderable {
-    private static final String[] birdArr = Colors.YELLOW.apply(new String[]{
+    private static final String[] birdArr = Colors.YELLOW_BACKGROUND.apply(new String[]{
             " \\  _  ",
             "  \\(.)" + Colors.RED.apply("<"),
             "  (___)",
     });
-    private static final String[] birdArrFlap = Colors.YELLOW.apply(new String[]{
+    private static final String[] birdArrFlap = Colors.YELLOW_BACKGROUND.apply(new String[]{
             "    _  ",
             "  /(.)<",
             " /(___)",
