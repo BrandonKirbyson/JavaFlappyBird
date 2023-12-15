@@ -1,15 +1,15 @@
 import Render.*;
 
 public class Bird implements Renderable {
-    private static final String[] birdArr = Colors.YELLOW_BACKGROUND.apply(new String[]{
-            " \\  _  ",
-            "  \\(.)" + Colors.RED.apply("<"),
-            "  (___)",
+    private static final String[] birdArr = Colors.YELLOW.apply(new String[]{
+            "\\  _  ",
+            " \\(" + Colors.WHITE.apply(".") + Colors.YELLOW.apply(")") + Colors.RED.apply("<"),
+            " (" + Colors.WHITE.apply("___") + Colors.YELLOW.apply(")"),
     });
-    private static final String[] birdArrFlap = Colors.YELLOW_BACKGROUND.apply(new String[]{
-            "    _  ",
-            "  /(.)<",
-            " /(___)",
+    private static final String[] birdArrFlap = Colors.YELLOW.apply(new String[]{
+            "   _  ",
+            " /(" + Colors.WHITE.apply(".") + Colors.YELLOW.apply(")") + Colors.RED.apply("<"),
+            "/(" + Colors.WHITE.apply("___") + Colors.YELLOW.apply(")"),
     });
 
     private boolean isDead = false;
