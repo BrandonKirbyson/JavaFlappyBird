@@ -1,6 +1,9 @@
 import Render.*;
 
 public class Bird implements Renderable {
+    private static final int width = 6;
+    private static final int height = 3;
+
     private static final String[] birdArr = Colors.YELLOW.apply(new String[]{
             "\\  _  ",
             " \\(" + Colors.WHITE.apply(".") + Colors.YELLOW.apply(")") + Colors.RED.apply("<"),
@@ -55,8 +58,20 @@ public class Bird implements Renderable {
         return (int) Math.round(y);
     }
 
+    public static int getWidth() {
+        return width;
+    }
+
+    public static int getHeight() {
+        return height;
+    }
+
     public boolean isDead() {
         return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
     }
 
     @Override

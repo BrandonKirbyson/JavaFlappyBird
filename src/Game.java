@@ -1,3 +1,5 @@
+import Overlays.GameScreen;
+import Overlays.Screen;
 import Render.Renderable;
 import Render.Renderer;
 
@@ -10,12 +12,16 @@ import java.util.concurrent.TimeUnit;
 public class Game {
     public final static int FPS = 60;
 
+    private static int score = 0;
+
     public static void main(String[] args) {
         Renderer.hideCursor();
         Controller controller = new Controller();
         new Thread(controller).start();
-        final Bird bird = new Bird();
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+        final Bird bird = new Bird();
+        final Obstacles obstacles = new Obstacles();
 
         Renderer.render(new Renderable[]{new Screen(GameScreen.MAIN_MENU)});
 
@@ -30,8 +36,16 @@ public class Game {
 
                 bird.update();
 
+                score = obstacles.update(score);
+
+                if (obstacles.checkCollision(bird.getY())) {
+                    bird.setDead(true);
+                }
+
                 ArrayList<Renderable> renderObjects = new ArrayList<>();
+                renderObjects.add(new Screen(GameScreen.GAME, score));
                 renderObjects.add(bird);
+                renderObjects.addAll(obstacles.getPipes());
 
                 Renderer.render(renderObjects.toArray(new Renderable[0]));
             } else {
