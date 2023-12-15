@@ -105,6 +105,10 @@ public class Renderer {
         runCommand("tput cnorm", "Error showing cursor ");
     }
 
+    public static void clearGame() {
+        runCommand("clear && printf \"\\e[3j\"", "Error showing cursor ");
+    }
+
     private static void runCommand(String command, String errorMessage) {
         try {
             new ProcessBuilder("bash", "-c", command).inheritIO().start().waitFor();

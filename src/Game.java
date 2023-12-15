@@ -31,7 +31,8 @@ public class Game {
 
                 Renderer.render(new Renderable[]{bird});
             } else {
-                Renderer.render(new Renderable[]{new Screen(GameScreen.GAME_OVER)});
+                Renderer.render(new Renderable[]{bird, new Screen(GameScreen.GAME_OVER)});
+                executorService.shutdown();
             }
 
         }, 0, 1000 / FPS, TimeUnit.MILLISECONDS);
@@ -39,6 +40,7 @@ public class Game {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             executorService.shutdown();
             Renderer.showCursor();
+            Renderer.clearGame();
         }));
     }
 }
