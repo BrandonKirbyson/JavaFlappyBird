@@ -1,6 +1,7 @@
 import Render.Renderable;
 import Render.Renderer;
 
+import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +13,11 @@ public class Game {
         new Thread(controller).start();
         final Bird bird = new Bird();
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+        Renderer.render(new Renderable[]{new Screen(GameScreen.MAIN_MENU)});
+
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
 
         executorService.scheduleAtFixedRate(() -> {
             if (!bird.isDead()) {

@@ -17,7 +17,8 @@ public class Renderer {
     }
 
     private static String[] getBlankFrame() {
-        String line = "|" + Colors.CYAN_BACKGROUND.apply(" ".repeat(width)) + "|";
+//        String line = "|" + Colors.CYAN_BACKGROUND.apply(" ".repeat(width)) + "|";
+        String line = "|" + " ".repeat(width) + "|";
         String horizontalLine = "|" + "-".repeat(width) + "|";
         String[] frame = new String[height];
         Arrays.fill(frame, line);
