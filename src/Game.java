@@ -14,13 +14,18 @@ public class Game {
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
         executorService.scheduleAtFixedRate(() -> {
-            if (controller.getJump()) {
-                bird.jump();
+            if (!bird.isDead()) {
+                if (controller.getJump()) {
+                    bird.jump();
+                }
+
+                bird.update();
+
+                Renderer.render(new Renderable[]{bird});
+            } else {
+                Renderer.render(new Renderable[]{new Screen(GameScreen.GAME_OVER)});
             }
 
-            bird.update();
-
-            Renderer.render(new Renderable[]{bird});
         }, 0, 16, TimeUnit.MILLISECONDS);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {

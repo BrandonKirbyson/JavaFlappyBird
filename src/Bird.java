@@ -12,6 +12,8 @@ public class Bird implements Renderable {
             " /(___)",
     });
 
+    private boolean isDead = false;
+
     private int flap = 0;
 
     private static final int x = 20;
@@ -31,6 +33,7 @@ public class Bird implements Renderable {
         if (y >= Renderer.getHeight() - birdArr.length + 1) {
             y = Renderer.getHeight() - birdArr.length + 1;
             yVel = 0;
+            isDead = true;
         }
     }
 
@@ -49,6 +52,10 @@ public class Bird implements Renderable {
 
     public int getY() {
         return (int) Math.round(y);
+    }
+
+    public boolean isDead() {
+        return isDead;
     }
 
     @Override
