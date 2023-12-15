@@ -1,6 +1,7 @@
 import Render.Renderable;
 import Render.Renderer;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -19,7 +20,7 @@ public class Game {
         Renderer.render(new Renderable[]{new Screen(GameScreen.MAIN_MENU)});
 
         Scanner scanner = new Scanner(System.in);
-//        scanner.nextLine();
+        scanner.nextLine();
 
         executorService.scheduleAtFixedRate(() -> {
             if (!bird.isDead()) {
@@ -29,7 +30,10 @@ public class Game {
 
                 bird.update();
 
-                Renderer.render(new Renderable[]{bird});
+                ArrayList<Renderable> renderObjects = new ArrayList<>();
+                renderObjects.add(bird);
+
+                Renderer.render(renderObjects.toArray(new Renderable[0]));
             } else {
                 Renderer.render(new Renderable[]{bird, new Screen(GameScreen.GAME_OVER)});
                 executorService.shutdown();
