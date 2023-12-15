@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import Render.Renderable;
+import Render.Renderer;
 
 public class Game {
     public static void main(String[] args) {
@@ -10,9 +11,11 @@ public class Game {
             if (controller.getJump()) {
                 bird.jump();
             }
+            
             bird.update();
 
-            Renderer.render(bird);
+            Renderer.render(new Renderable[]{bird});
+
             try {
                 Thread.sleep(16);
             } catch (InterruptedException e) {

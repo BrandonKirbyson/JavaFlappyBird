@@ -1,4 +1,9 @@
-public class Bird {
+import Render.Overlay;
+import Render.Position;
+import Render.Renderable;
+import Render.Renderer;
+
+public class Bird implements Renderable {
     private static final String[] birdArr = {
             " \\  _  ",
             "  \\(.)<",
@@ -47,5 +52,10 @@ public class Bird {
 
     public int getY() {
         return (int) Math.round(y);
+    }
+
+    @Override
+    public Overlay getOverlay() {
+        return new Overlay(getBirdDrawing(), new Position(getX(), getY()));
     }
 }
