@@ -7,6 +7,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
+    public final static int FPS = 60;
+
     public static void main(String[] args) {
         Renderer.hideCursor();
         Controller controller = new Controller();
@@ -17,7 +19,7 @@ public class Game {
         Renderer.render(new Renderable[]{new Screen(GameScreen.MAIN_MENU)});
 
         Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+//        scanner.nextLine();
 
         executorService.scheduleAtFixedRate(() -> {
             if (!bird.isDead()) {
@@ -32,7 +34,7 @@ public class Game {
                 Renderer.render(new Renderable[]{new Screen(GameScreen.GAME_OVER)});
             }
 
-        }, 0, 16, TimeUnit.MILLISECONDS);
+        }, 0, 1000 / FPS, TimeUnit.MILLISECONDS);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             executorService.shutdown();
