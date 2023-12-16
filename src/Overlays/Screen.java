@@ -1,10 +1,7 @@
 package Overlays;
 
 import Overlays.GameScreen;
-import Render.Overlay;
-import Render.Position;
-import Render.Renderable;
-import Render.Renderer;
+import Render.*;
 
 public class Screen implements Renderable {
     private final GameScreen gameScreen;
@@ -21,9 +18,8 @@ public class Screen implements Renderable {
     };
 
     private static final String[] mainMenu = new String[]{
-            "Welcome to Flappy Bird!",
-            "1. Play",
-            "2. Scoreboard",
+            Colors.WHITE.apply("Welcome to Flappy Bird!"),
+            Colors.GREEN.apply("Your best score is: 0"),
     };
 
     public Screen(GameScreen screen) {
@@ -41,8 +37,12 @@ public class Screen implements Renderable {
             case MAIN_MENU -> new Overlay(mainMenu,
                     new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.TOP)
             );
-            case GAME ->
-                    new Overlay(new String[]{"Score: " + score}, new Position(Renderer.getWidth(), 0, Position.HorizontalAlignment.RIGHT, Position.VerticalAlignment.TOP));
+            case GAME -> new Overlay(
+                    new String[]{"Score: " + score},
+                    new Position(Renderer.getWidth(),
+                            0,
+                            Position.HorizontalAlignment.RIGHT,
+                            Position.VerticalAlignment.TOP));
             case GAME_OVER -> new Overlay(gameOver,
                     new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.TOP)
             );

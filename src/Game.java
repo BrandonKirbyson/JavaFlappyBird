@@ -25,8 +25,20 @@ public class Game {
 
         Renderer.render(new Renderable[]{new Screen(GameScreen.MAIN_MENU)});
 
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+        System.out.println("Loading...");
+        for (byte i = 0; i < 15; i++) {
+            System.out.print("\r" + "Loading" + ".".repeat(i % 4));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                System.out.println("Error: " + e);
+            }
+        }
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            System.out.println("Error: " + e);
+//        }
 
         executorService.scheduleAtFixedRate(() -> {
             if (!bird.isDead()) {

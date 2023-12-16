@@ -62,8 +62,8 @@ public class Renderer {
     }
 
     private static void addOverlay(Overlay overlay) {
-        final String[] overlayArr = overlay.getOverlayArr();
-        final Position position = overlay.getPosition();
+        final String[] overlayArr = overlay.overlayArr();
+        final Position position = overlay.position();
 
         int length = getRealLength(overlayArr[0]);
 
