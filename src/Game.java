@@ -59,7 +59,12 @@ public class Game {
 
                 Renderer.render(renderObjects.toArray(new Renderable[0]));
             } else {
-                Renderer.render(new Renderable[]{bird, new Screen(GameScreen.GAME_OVER)});
+                ArrayList<Renderable> renderObjects = new ArrayList<>();
+                renderObjects.addAll(obstacles.getPipes());
+                renderObjects.add(bird);
+                renderObjects.add(new Screen(GameScreen.GAME_OVER, score));
+
+                Renderer.render(renderObjects.toArray(new Renderable[0]));
                 executorService.shutdown();
             }
         }, 0, 1000 / FPS, TimeUnit.MILLISECONDS);

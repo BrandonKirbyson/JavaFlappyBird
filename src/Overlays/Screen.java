@@ -35,7 +35,7 @@ public class Screen implements Renderable {
     public Overlay getOverlay() {
         return switch (gameScreen) {
             case MAIN_MENU -> new Overlay(mainMenu,
-                    new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.TOP)
+                    new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.CENTER)
             );
             case GAME -> new Overlay(
                     new String[]{"Score: " + score},
@@ -44,7 +44,7 @@ public class Screen implements Renderable {
                             Position.HorizontalAlignment.RIGHT,
                             Position.VerticalAlignment.TOP));
             case GAME_OVER -> new Overlay(gameOver,
-                    new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.TOP)
+                    new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.CENTER)
             );
         };
     }

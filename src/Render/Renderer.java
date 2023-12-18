@@ -74,12 +74,17 @@ public class Renderer {
 
         overlayArr = filterColor(overlayArr);
 
-        int length = overlayArr[0].length();
+        int length = overlayArr.length;
+
+        int xLength = 0;
+        for (String s : overlayArr) {
+            xLength = Math.max(xLength, getRealLength(s));
+        }
 
         final int xOffset = switch (position.getHorizontalAlignment()) {
-            case LEFT -> 0;
-            case MIDDLE -> -length / 2;
-            case RIGHT -> -length;
+            case LEFT -> -xLength;
+            case MIDDLE -> -xLength / 2;
+            case RIGHT -> 0;
         };
         final int yOffset = switch (position.getVerticalAlignment()) {
             case TOP -> 0;
