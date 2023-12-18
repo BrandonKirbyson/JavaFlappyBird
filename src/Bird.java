@@ -24,8 +24,8 @@ public class Bird implements Renderable {
     private double y = (double) Renderer.getHeight() / 2;
 
     private double yVel = 0;
-    private final static double gravity = 120;
-    private final static double jumpVel = 40;
+    private final static double gravity = 100;
+    private final static double jumpVel = 30;
 
     public void update() {
         if (flap > 0) {
@@ -34,8 +34,8 @@ public class Bird implements Renderable {
         yVel += gravity / Game.FPS;
         y += yVel / Game.FPS;
 
-        if (y >= Renderer.getHeight() - birdArr.length + 1) {
-            y = Renderer.getHeight() - birdArr.length + 1;
+        if (y >= Renderer.getHeight() - (birdArr.length / 2 - 1)) {
+            y = Renderer.getHeight() - (birdArr.length / 2 - 1);
             yVel = 0;
             isDead = true;
         }

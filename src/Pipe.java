@@ -4,12 +4,15 @@ import Render.Renderable;
 import Render.Renderer;
 
 public class Pipe implements Renderable {
+    public static final int SPACING = 20;
+
     private static final int width = 10;
 
     private final int gapY;
     private final int gapSize;
 
     private boolean cleared = false;
+    public boolean genNext = false;
 
     private double x = Renderer.getWidth();
 
@@ -40,16 +43,14 @@ public class Pipe implements Renderable {
 
     private String[] getPipeDrawing() {
         String[] pipe = new String[Renderer.getHeight()];
+        /*
+            |==| for pipe
+         */
         for (int i = 0; i < pipe.length; i++) {
-            pipe[i] = "|";
-            if (i < gapY || i >= gapY + gapSize) {
-                for (int j = 0; j < width; j++) {
-                    pipe[i] += " ";
-                }
+            if (i < gapY || i > gapY + gapSize) {
+                pipe[i] = "|==|";
             } else {
-                for (int j = 0; j < width; j++) {
-                    pipe[i] += "-";
-                }
+                pipe[i] = "    ";
             }
         }
         return pipe;

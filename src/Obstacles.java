@@ -21,13 +21,14 @@ public class Obstacles {
     }
 
     private void addPipe() {
-        int gapY = (int) Math.round(Math.random() * (Renderer.getHeight() - 10));
         int gapSize = (int) Math.round(Math.random() * 10 + 10);
+        int gapY = (int) Math.round(Math.random() * (Renderer.getHeight() - gapSize)) + gapSize / 2;
         pipes.add(new Pipe(gapY, gapSize));
     }
 
     public int update(int score) {
-        for (Pipe pipe : pipes) {
+        for (int i = 0; i < pipes.size(); i++) {
+            Pipe pipe = pipes.get(i);
             pipe.update(speed);
 
             if (!pipe.isCleared() && pipe.getX() < Bird.getX()) {
@@ -38,8 +39,11 @@ public class Obstacles {
 
             if (pipe.getX() < 0) {
                 pipes.remove(pipe);
+            }
+
+            if (!pipe.genNext && pipe.getX() < Renderer.getWidth() - Pipe.SPACING) {
                 addPipe();
-                break;
+                pipe.genNext = true;
             }
         }
         return score;
