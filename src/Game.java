@@ -19,11 +19,15 @@ public class Game {
         new Thread(controller).start();
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
+        HighScoreManager.setHighScore(0);
+        System.out.println(HighScoreManager.getHighScore());
+
         for (int i = 1; i <= 100; i++) {
+            Renderer.render(new Renderable[]{new LoadingBar(i)});
             Renderer.render(new Renderable[]{new LoadingBar(i)});
 
             try {
-                Thread.sleep(10);
+                Thread.sleep(30);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
