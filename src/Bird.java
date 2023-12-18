@@ -1,7 +1,7 @@
 import Render.*;
 
 public class Bird implements Renderable {
-    private static final int width = 6;
+    private static final int width = 4;
     private static final int height = 3;
 
     private static final String[] birdArr = Colors.YELLOW.apply(new String[]{
