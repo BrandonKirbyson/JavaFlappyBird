@@ -61,11 +61,20 @@ public class Renderer {
         return length;
     }
 
+    private static String[] filterColor(String[] strs) {
+        for (int i = 0; i < strs.length; i++) {
+            strs[i] = strs[i].replaceAll("\u001B\\[[;\\d]*m", "");
+        }
+        return strs;
+    }
+
     private static void addOverlay(Overlay overlay) {
-        final String[] overlayArr = overlay.overlayArr();
+        String[] overlayArr = overlay.overlayArr();
         final Position position = overlay.position();
 
-        int length = getRealLength(overlayArr[0]);
+        overlayArr = filterColor(overlayArr);
+
+        int length = overlayArr[0].length();
 
         final int xOffset = switch (position.getHorizontalAlignment()) {
             case LEFT -> 0;
