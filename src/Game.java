@@ -52,15 +52,14 @@ public class Game {
 
                 ArrayList<Renderable> renderObjects = new ArrayList<>();
                 renderObjects.add(new Screen(GameScreen.GAME, score));
-                renderObjects.add(bird);
                 renderObjects.addAll(obstacles.getPipes());
+                renderObjects.add(bird);
 
                 Renderer.render(renderObjects.toArray(new Renderable[0]));
             } else {
                 Renderer.render(new Renderable[]{bird, new Screen(GameScreen.GAME_OVER)});
                 executorService.shutdown();
             }
-
         }, 0, 1000 / FPS, TimeUnit.MILLISECONDS);
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
