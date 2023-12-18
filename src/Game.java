@@ -4,7 +4,6 @@ import Render.Renderable;
 import Render.Renderer;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -20,30 +19,18 @@ public class Game {
         new Thread(controller).start();
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-        final Bird bird = new Bird();
-        final Obstacles obstacles = new Obstacles();
+        for (int i = 1; i <= 100; i++) {
+            Renderer.render(new Renderable[]{new LoadingBar(i)});
 
-        Renderer.render(new Renderable[]{new Screen(GameScreen.MAIN_MENU)});
-
-        System.out.println("Loading...");
-
-        ArrayList<Renderable> renderObject = new ArrayList<>();
-        renderObject.add(new Screen(GameScreen.GAME, score));
-        Renderer.render(renderObject.toArray(new Renderable[0]));
-
-        for (byte i = 0; i < 15; i++) {
-            System.out.print("\r" + "Loading" + ".".repeat(i % 4));
             try {
-                Thread.sleep(100);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
-                System.out.println("Error: " + e);
+                throw new RuntimeException(e);
             }
         }
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException e) {
-//            System.out.println("Error: " + e);
-//        }
+
+        final Bird bird = new Bird();
+        final Obstacles obstacles = new Obstacles();
 
         executorService.scheduleAtFixedRate(() -> {
             if (!bird.isDead()) {

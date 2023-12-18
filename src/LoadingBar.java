@@ -1,18 +1,9 @@
 import Render.*;
 
 public class LoadingBar implements Renderable {
-    private int progress = 0;
-    private final int maxProgress = 100;
+    private final int progress;
 
     public LoadingBar(int progress) {
-        this.progress = progress;
-    }
-
-    public int getProgress() {
-        return progress;
-    }
-
-    public void setProgress(int progress) {
         this.progress = progress;
     }
 
