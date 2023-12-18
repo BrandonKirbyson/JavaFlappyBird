@@ -29,7 +29,7 @@ public class Game {
 //            Renderer.render(new Renderable[]{new LoadingBar(i)});
 
             try {
-                Thread.sleep(30);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
