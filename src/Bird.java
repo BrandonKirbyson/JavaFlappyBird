@@ -34,8 +34,8 @@ public class Bird implements Renderable {
         yVel += gravity / Game.FPS;
         y += yVel / Game.FPS;
 
-        if (y >= Renderer.getHeight() - (birdArr.length / 2 - 1)) {
-            y = Renderer.getHeight() - (birdArr.length / 2 - 1);
+        if (y >= Renderer.getHeight() - (birdArr.length - 1)) {
+            y = Renderer.getHeight() - (birdArr.length - 1);
             yVel = 0;
             isDead = true;
         }
