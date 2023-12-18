@@ -53,9 +53,9 @@ public class Game {
                 }
 
                 ArrayList<Renderable> renderObjects = new ArrayList<>();
-                renderObjects.add(new Screen(GameScreen.GAME, score));
                 renderObjects.addAll(obstacles.getPipes());
                 renderObjects.add(bird);
+                renderObjects.add(new Screen(GameScreen.GAME, score));
 
                 Renderer.render(renderObjects.toArray(new Renderable[0]));
             } else {

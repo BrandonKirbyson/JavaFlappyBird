@@ -82,9 +82,9 @@ public class Renderer {
         }
 
         final int xOffset = switch (position.getHorizontalAlignment()) {
-            case LEFT -> -xLength;
+            case LEFT -> 0;
             case MIDDLE -> -xLength / 2;
-            case RIGHT -> 0;
+            case RIGHT -> -xLength;
         };
         final int yOffset = switch (position.getVerticalAlignment()) {
             case TOP -> 0;
@@ -104,9 +104,10 @@ public class Renderer {
                     continue;
                 }
                 final char overlayChar = overlayRow.charAt(j);
-                if (overlayChar != ' ') {
-                    frame[row] = frame[row].substring(0, col) + overlayChar + frame[row].substring(col + 1);
+                if (overlayChar == ' ' && overlayRow.substring(0, j).trim().isEmpty() && overlayRow.substring(j + 1).trim().isEmpty()) {
+                    continue;
                 }
+                frame[row] = frame[row].substring(0, col) + overlayChar + frame[row].substring(col + 1);
             }
         }
     }

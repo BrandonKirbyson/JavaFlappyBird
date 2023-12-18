@@ -38,7 +38,7 @@ public class Screen implements Renderable {
                     new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.CENTER)
             );
             case GAME -> new Overlay(
-                    new String[]{"Score: " + score},
+                    new String[]{"< Score: " + score + " >"},
                     new Position(Renderer.getWidth(),
                             0,
                             Position.HorizontalAlignment.RIGHT,
