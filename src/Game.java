@@ -19,12 +19,14 @@ public class Game {
         new Thread(controller).start();
         ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-        HighScoreManager.setHighScore(0);
-        System.out.println(HighScoreManager.getHighScore());
-
         for (int i = 1; i <= 100; i++) {
-            Renderer.render(new Renderable[]{new LoadingBar(i)});
-            Renderer.render(new Renderable[]{new LoadingBar(i)});
+            ArrayList<Renderable> renderObjects = new ArrayList<>();
+            renderObjects.add(new HighScore());
+            renderObjects.add(new LoadingBar(i));
+
+            Renderer.render(renderObjects.toArray(new Renderable[0]));
+//            Renderer.render(new Renderable[]{new HighScore()});
+//            Renderer.render(new Renderable[]{new LoadingBar(i)});
 
             try {
                 Thread.sleep(30);

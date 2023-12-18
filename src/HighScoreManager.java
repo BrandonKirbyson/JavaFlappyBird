@@ -5,7 +5,16 @@ public class HighScoreManager {
     private static final String HIGH_SCORE_FILE_PATH = "data/" + "highscore.txt";
 
     public static int getHighScore() {
-        return 0;
+        File file = new File(HIGH_SCORE_FILE_PATH);
+        if (!file.exists()) {
+            return 0;
+        }
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            return Integer.parseInt(reader.readLine());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void setHighScore(int score) {

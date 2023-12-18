@@ -7,7 +7,8 @@ public class HighScore implements Renderable {
                 new String[]{
                         "High Score: " + HighScoreManager.getHighScore(),
                 },
-                new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.CENTER)
+
+                new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.TOP)
         );
     }
 }
