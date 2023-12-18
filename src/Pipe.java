@@ -4,7 +4,7 @@ import Render.Renderable;
 import Render.Renderer;
 
 public class Pipe implements Renderable {
-    public static final int SPACING = 20;
+    public static final int SPACING = 30;
 
     private static final int width = 10;
 
