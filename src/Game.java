@@ -26,6 +26,11 @@ public class Game {
         Renderer.render(new Renderable[]{new Screen(GameScreen.MAIN_MENU)});
 
         System.out.println("Loading...");
+
+        ArrayList<Renderable> renderObject = new ArrayList<>();
+        renderObject.add(new Screen(GameScreen.GAME, score));
+        Renderer.render(renderObject.toArray(new Renderable[0]));
+
         for (byte i = 0; i < 15; i++) {
             System.out.print("\r" + "Loading" + ".".repeat(i % 4));
             try {
