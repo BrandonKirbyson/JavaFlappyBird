@@ -12,7 +12,7 @@ public class LoadingBar implements Renderable {
         return new Overlay(
                 new String[]{
                         "Loading: " + progress + "% ",
-                        "█".repeat(progress / 10) + "░".repeat(10 - progress / 10)
+                        "█".repeat(progress / 2) + "░".repeat((100 / 2) - (progress / 2)),
                 },
                 new Position(Renderer.getWidth() / 2, Renderer.getHeight() / 2, Position.HorizontalAlignment.MIDDLE, Position.VerticalAlignment.CENTER)
         );
