@@ -25,8 +25,6 @@ public class Game {
             renderObjects.add(new LoadingBar(i));
 
             Renderer.render(renderObjects.toArray(new Renderable[0]));
-//            Renderer.render(new Renderable[]{new HighScore()});
-//            Renderer.render(new Renderable[]{new LoadingBar(i)});
 
             try {
                 Thread.sleep(30);
