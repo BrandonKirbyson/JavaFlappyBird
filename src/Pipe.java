@@ -6,7 +6,7 @@ import Render.Renderer;
 public class Pipe implements Renderable {
     public static final int SPACING = 30;
 
-    private static final int width = 10;
+    private static final int width = 4;
 
     private final int gapY;
     private final int gapSize;
@@ -26,8 +26,8 @@ public class Pipe implements Renderable {
     }
 
     public boolean checkCollision(int birdY) {
-        if (x < Bird.getX() + Bird.getWidth() / 2 && x + width > Bird.getX() - Bird.getWidth() / 2) {
-            if (birdY - Bird.getHeight() / 2 < gapY || birdY + Bird.getHeight() / 2 > gapY + gapSize) {
+        if (x < Bird.getX() + Bird.getWidth() / 2 + width / 2 && x > Bird.getX() - Bird.getWidth() / 2 - width / 2) {
+            if (birdY < gapY - gapSize / 2 + Bird.getHeight() / 2 || birdY > gapY + gapSize / 2 - Bird.getHeight() / 2) {
                 return true;
             }
         }
@@ -50,10 +50,10 @@ public class Pipe implements Renderable {
         String[] pipe = new String[Renderer.getHeight()];
         // |==| for pipe
         for (int i = 0; i < pipe.length; i++) {
-            if (i < gapY || i > gapY + gapSize) {
-                pipe[i] = "[==]";
+            if (i < gapY - gapSize / 2 || i > gapY + gapSize / 2) {
+                pipe[i] = "[" + "=".repeat(width) + "]";
             } else {
-                pipe[i] = "    ";
+                pipe[i] = " ".repeat(2 + width);
             }
         }
         return pipe;

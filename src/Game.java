@@ -4,6 +4,7 @@ import Render.Renderable;
 import Render.Renderer;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -25,6 +26,10 @@ public class Game {
             renderObjects.add(new LoadingBar(i));
 
             Renderer.render(renderObjects.toArray(new Renderable[0]));
+
+            if (controller.getJump()) {
+                break;
+            }
 
             try {
                 Thread.sleep(30);
@@ -59,7 +64,12 @@ public class Game {
             } else {
                 HighScoreManager.setHighScore(score);
 
-                Renderer.render(new Renderable[]{bird, new Screen(GameScreen.GAME_OVER)});
+                ArrayList<Renderable> renderObjects = new ArrayList<>();
+                renderObjects.addAll(obstacles.getPipes());
+                renderObjects.add(bird);
+                renderObjects.add(new Screen(GameScreen.GAME_OVER, score));
+
+                Renderer.render(renderObjects.toArray(new Renderable[0]));
                 executorService.shutdown();
             }
         }, 0, 1000 / FPS, TimeUnit.MILLISECONDS);
