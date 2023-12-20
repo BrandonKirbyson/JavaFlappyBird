@@ -11,12 +11,12 @@ public class Bird implements Renderable {
 
 
     private static final HashMap<Integer, String[]> birdArrMap = new HashMap<>() {{
-        put(0,new String[]{
+        put(0, new String[]{
                 "\\   ",
                 " \\(.)<",
                 " (__) ",
         });
-        put(1,new String[]{
+        put(1, new String[]{
                 "    ",
                 "  (.)<",
                 "/(__) ",
@@ -62,8 +62,8 @@ public class Bird implements Renderable {
             yVel = 0;
             isDead = true;
         }
-        if(y <= birdArr.length / 2){
-            y = birdArr.length / 2;
+        if (y <= (double) birdArr.length / 2) {
+            y = (double) birdArr.length / 2;
             yVel = 0;
         }
     }
