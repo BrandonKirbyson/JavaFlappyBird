@@ -73,8 +73,8 @@ public final class Game {
                 ArrayList<Renderable> renderObjects = new ArrayList<>(obstacles.getPipes());
                 renderObjects.add(bird);
                 renderObjects.add(new Screen(GameScreen.GAME_OVER, score));
-
                 Renderer.render(renderObjects.toArray(new Renderable[0]));
+
                 if (controller.getJump()) {
                     bird.reset();
                     obstacles.reset();

@@ -23,7 +23,8 @@ public final class Screen implements Renderable {
     private final int score;
 
     private static final int rowWidth = 53;
-    private static final int highScore = HighScoreManager.getHighScore();
+    private static int highScore = HighScoreManager.getHighScore();
+    private static boolean newHighScore = false;
 
 
     // Unused
@@ -48,6 +49,11 @@ public final class Screen implements Renderable {
      */
     @Override
     public Overlay getOverlay() {
+        if (score > highScore) {
+            newHighScore = true;
+            highScore = score;
+        }
+
         // Game over screen
         final String[] gameOver = new String[]{
                 "+-----------------------------------------------------+",
@@ -58,11 +64,11 @@ public final class Screen implements Renderable {
                 "| | |_| | (_| | | | | | |  __/ | |_| |\\ V /  __/ |    |",
                 "|  \\____|\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|    |",
                 "|                                                     |",
+                "|" + centerString(newHighScore ? "New High Score" : "Not new score") + "|",
                 "|                                                     |",
                 "|" + centerString(("High Score: " + highScore)) + "|",
                 "|                                                     |",
                 "|" + centerString(("Your Score: " + score)) + "|",
-                "|                                                     |",
                 "|                                                     |",
                 "|                                                     |",
                 "|                                                     |",
