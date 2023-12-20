@@ -1,10 +1,7 @@
-import Overlays.GameScreen;
-import Overlays.Screen;
 import Render.Renderable;
 import Render.Renderer;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

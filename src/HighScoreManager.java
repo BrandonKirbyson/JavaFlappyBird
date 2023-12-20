@@ -1,10 +1,13 @@
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class HighScoreManager {
     private static final String HIGH_SCORE_FILE_PATH = "data/" + "highscore.txt";
+
+    public static int getHighScoreLength() {
+        return String.valueOf(getHighScore()).length();
+    }
 
     public static int getHighScore() {
         String projectRootPath = new File("").getAbsolutePath();
