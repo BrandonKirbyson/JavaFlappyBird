@@ -58,6 +58,13 @@ public final class Pipe implements Renderable {
     }
 
     /**
+     * Sets the x position of the pipe
+     */
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    /**
      * @return if the pipe has been cleared
      */
     public boolean isCleared() {

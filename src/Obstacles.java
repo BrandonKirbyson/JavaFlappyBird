@@ -14,7 +14,7 @@ public final class Obstacles {
      * Creates a new Obstacles object
      */
     public Obstacles() {
-        addPipe();
+        addInitialPipes();
     }
 
     /**
@@ -31,6 +31,19 @@ public final class Obstacles {
             }
         }
         return false;
+    }
+
+    private void addInitialPipes() {
+        int length = (Renderer.getWidth() - Bird.getX() - Pipe.SPACING) / Pipe.SPACING + 1;
+        for (int i = 0; i < length; i++) {
+            if (i == length - 1) pipes.add(new Pipe(Renderer.getHeight() / 2, 20));
+            else if (i == length - 2) pipes.add(new Pipe(Renderer.getHeight() / 2, 15));
+            else addPipe();
+            pipes.get(i).setX(Renderer.getWidth() - i * Pipe.SPACING);
+            if (i != 0) {
+                pipes.get(i).genNext = true;
+            }
+        }
     }
 
     /**
@@ -83,7 +96,7 @@ public final class Obstacles {
      */
     public void reset() {
         pipes.clear();
-        addPipe();
+        addInitialPipes();
         speed = 0.5;
     }
 }
