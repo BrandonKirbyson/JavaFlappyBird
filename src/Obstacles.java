@@ -99,4 +99,17 @@ public final class Obstacles {
         addInitialPipes();
         speed = 0.5;
     }
+
+    /**
+     * @return the current pipe
+     */
+    public Pipe getCurrentPipe() {
+        Pipe closest = pipes.get(0);
+        for (Pipe pipe : pipes) {
+            if ((pipe.getX() + (Pipe.getWidth() / 2)) > Bird.getX() && pipe.getX() < closest.getX()) {
+                closest = pipe;
+            }
+        }
+        return closest;
+    }
 }

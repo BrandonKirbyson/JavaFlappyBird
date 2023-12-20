@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  */
 public final class Game {
     public final static int FPS = 60;
-
+    public static boolean isBotMode = false;
     private static int score = 0;
 
     /**
@@ -20,6 +20,11 @@ public final class Game {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        if (args.length > 0) {
+            if (args[0].equals("bot")) {
+                isBotMode = true;
+            }
+        }
         Renderer.hideCursor();
         Controller controller = new Controller();
         new Thread(controller).start();
@@ -37,7 +42,6 @@ public final class Game {
             if (controller.getJump()) {
                 break;
             }
-
             try {
                 Thread.sleep(30);
             } catch (InterruptedException e) {
@@ -50,8 +54,14 @@ public final class Game {
 
         executorService.scheduleAtFixedRate(() -> {
             if (!bird.isDead()) {
-                if (controller.getJump()) {
-                    bird.jump();
+                if (isBotMode) {
+                    if (Bot.getJump(bird, obstacles)) {
+                        bird.jump();
+                    }
+                } else {
+                    if (controller.getJump()) {
+                        bird.jump();
+                    }
                 }
 
                 bird.update();

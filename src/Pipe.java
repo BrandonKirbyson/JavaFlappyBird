@@ -58,6 +58,13 @@ public final class Pipe implements Renderable {
     }
 
     /**
+     * @return the y position of the gap
+     */
+    public int getGapY() {
+        return gapY;
+    }
+
+    /**
      * Sets the x position of the pipe
      */
     public void setX(double x) {
@@ -98,6 +105,13 @@ public final class Pipe implements Renderable {
             }
         }
         return pipe;
+    }
+
+    /**
+     * @return the width of the pipe
+     */
+    public static int getWidth() {
+        return width;
     }
 
     /**
