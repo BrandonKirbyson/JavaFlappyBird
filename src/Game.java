@@ -1,6 +1,7 @@
 import Render.Renderable;
 import Render.Renderer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -76,9 +77,14 @@ public final class Game {
                 Renderer.render(renderObjects.toArray(new Renderable[0]));
 
                 if (controller.getJump()) {
-                    bird.reset();
-                    obstacles.reset();
-                    score = 0;
+                    try {
+                        Thread.sleep(100);
+                        bird.reset();
+                        obstacles.reset();
+                        score = 0;
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
             }
         }, 0, 1000 / FPS, TimeUnit.MILLISECONDS);

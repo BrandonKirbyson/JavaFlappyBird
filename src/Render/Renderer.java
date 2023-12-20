@@ -1,12 +1,22 @@
 package Render;
 
+import java.io.IOException;
 import java.util.Arrays;
 
 /**
  * The main class for rendering the game
  */
 public final class Renderer {
-    private static final int width = 100;
+    private static final int width;
+
+    static {
+        try {
+            width = execCmd("tput cols 2> /dev/tty").isEmpty() ? 150 : Integer.parseInt(execCmd("tput cols 2> /dev/tty").trim()) - 2;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static final int height = 30;
 
     private static String[] frame;
@@ -190,5 +200,21 @@ public final class Renderer {
         } catch (Exception e) {
             System.out.println(errorMessage + e);
         }
+    }
+
+    public static String execCmd(String cmd) throws java.io.IOException {
+        // Run a command and get the output with ProcessBuilder
+        var processBuilder = new ProcessBuilder("bash", "-c", cmd);
+        var process = processBuilder.start();
+        var output = new StringBuilder();
+        var reader = new java.io.BufferedReader(new java.io.InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            output.append(line).append("\n");
+        }
+
+        // Remove the last newline character
+//        output.deleteCharAt(output.length() - 1);
+        return output.toString();
     }
 }

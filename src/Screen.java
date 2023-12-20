@@ -64,7 +64,7 @@ public final class Screen implements Renderable {
                 "| | |_| | (_| | | | | | |  __/ | |_| |\\ V /  __/ |    |",
                 "|  \\____|\\__,_|_| |_| |_|\\___|  \\___/  \\_/ \\___|_|    |",
                 "|                                                     |",
-                "|" + centerString(newHighScore ? "New High Score" : "Not new score") + "|",
+                "|" + centerString(newHighScore ? "New High Score" : "") + "|",
                 "|                                                     |",
                 "|" + centerString(("High Score: " + highScore)) + "|",
                 "|                                                     |",
