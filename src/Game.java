@@ -75,7 +75,11 @@ public final class Game {
                 renderObjects.add(new Screen(GameScreen.GAME_OVER, score));
 
                 Renderer.render(renderObjects.toArray(new Renderable[0]));
-                executorService.shutdown();
+                if (controller.getJump()) {
+                    bird.reset();
+                    obstacles.reset();
+                    score = 0;
+                }
             }
         }, 0, 1000 / FPS, TimeUnit.MILLISECONDS);
 

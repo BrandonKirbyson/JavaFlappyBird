@@ -108,6 +108,15 @@ public class Bird implements Renderable {
     }
 
     /**
+     * Resets the bird to the middle of the screen
+     */
+    public void reset() {
+        y = (double) Renderer.getHeight() / 2;
+        yVel = 0;
+        isDead = false;
+    }
+
+    /**
      * @return the overlay of the bird
      */
     @Override

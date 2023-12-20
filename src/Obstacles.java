@@ -77,4 +77,13 @@ public final class Obstacles {
     public ArrayList<Pipe> getPipes() {
         return pipes;
     }
+
+    /**
+     * Resets the pipes
+     */
+    public void reset() {
+        pipes.clear();
+        addPipe();
+        speed = 0.5;
+    }
 }
