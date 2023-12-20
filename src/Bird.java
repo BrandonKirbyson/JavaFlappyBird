@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public class Bird implements Renderable {
     private static final int width = 4;
-    private static final int height = 3;
+    private static final int height = 4;
 
 
     private static final HashMap<Integer, String[]> birdArrMap = new HashMap<>() {{
