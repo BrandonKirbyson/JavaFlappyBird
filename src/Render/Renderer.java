@@ -30,7 +30,7 @@ public final class Renderer {
      */
     private static String[] getBlankFrame() {
         String line = "|" + " ".repeat(width) + "|";
-        String horizontalLine = "|" + "-".repeat(width) + "|";
+        String horizontalLine = "|" + "=".repeat(width) + "|";
         String[] frame = new String[height];
         Arrays.fill(frame, line);
         frame[0] = horizontalLine;
@@ -135,7 +135,7 @@ public final class Renderer {
         // Put the overlay into the frame
         for (int i = 0; i < overlayArr.length; i++) {
             final int row = position.getY() + i + yOffset;
-            if (row < 0 || row >= frame.length) {
+            if (row <= 0 || row >= frame.length - 1) {
                 continue;
             }
             final String overlayRow = overlayArr[i];
@@ -145,7 +145,7 @@ public final class Renderer {
 //            overlayRow = overlayArr[i];
             for (int j = 0; j < overlayRow.length(); j++) {
                 final int col = position.getX() + j + xOffset;
-                if (col < 0 || col >= frame[row].length()) {
+                if (col <= 0 || col >= frame[row].length() - 1) {
                     continue;
                 }
                 final char overlayChar = overlayRow.charAt(j);
