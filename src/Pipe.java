@@ -9,7 +9,7 @@ import Render.Renderer;
 public final class Pipe implements Renderable {
     public static final int SPACING = 30;
 
-    private static final int width = 4;
+    private static final int width = 5;
 
     private final int gapY;
     private final int gapSize;
@@ -81,6 +81,10 @@ public final class Pipe implements Renderable {
         // |==| is the pipe
         for (int i = 0; i < pipe.length; i++) {
             if (i < gapY - gapSize / 2 || i > gapY + gapSize / 2) {
+                pipe[i] = "[" + " ".repeat(width) + "]";
+            } else if (i == gapY - gapSize / 2) {
+                pipe[i] = "[" + "=".repeat(width) + "]";
+            } else if (i == gapY + gapSize / 2) {
                 pipe[i] = "[" + "=".repeat(width) + "]";
             } else {
                 pipe[i] = " ".repeat(2 + width);
