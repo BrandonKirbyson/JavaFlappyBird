@@ -1,5 +1,8 @@
 package Render;
 
+/**
+ * Ansi escape codes for colors
+ */
 @SuppressWarnings("unused")
 public enum Colors {
     BLACK("\u001B[30m"),
@@ -24,14 +27,27 @@ public enum Colors {
 
     private final String color;
 
+    /**
+     * Creates a new color
+     *
+     * @param color the color code
+     */
     Colors(String color) {
         this.color = color;
     }
 
+    /**
+     * Applies the color to a string
+     */
     public String apply(String text) {
         return color + text + RESET.color;
     }
 
+    /**
+     * Applies the color to a string array
+     *
+     * @see Colors#apply(String)
+     */
     public String[] apply(String[] text) {
         String[] coloredText = new String[text.length];
         for (int i = 0; i < text.length; i++) {

@@ -2,22 +2,33 @@ package Render;
 
 import java.util.Arrays;
 
-public class Renderer {
+/**
+ * The main class for rendering the game
+ */
+public final class Renderer {
     private static final int width = 100;
     private static final int height = 30;
 
     private static String[] frame;
 
+    /**
+     * @return the width of the game screen
+     */
     public static int getWidth() {
         return width;
     }
 
+    /**
+     * @return the height of the game screen
+     */
     public static int getHeight() {
         return height;
     }
 
+    /**
+     * @return a blank frame that has a boarder
+     */
     private static String[] getBlankFrame() {
-//        String line = "|" + Colors.CYAN_BACKGROUND.apply(" ".repeat(width)) + "|";
         String line = "|" + " ".repeat(width) + "|";
         String horizontalLine = "|" + "-".repeat(width) + "|";
         String[] frame = new String[height];
@@ -27,16 +38,28 @@ public class Renderer {
         return frame;
     }
 
+    /**
+     * Clears the screen
+     */
     private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
 
+
+    /**
+     * Reassigns the frame to a blank frame
+     */
     private static void newFrame() {
         frame = getBlankFrame();
     }
 
-    public static <T extends Renderable> void render(T[] overlayObjects) {
+    /**
+     * Renders the game by looping through the objects and adding them to the frame
+     *
+     * @param overlayObjects the objects to render
+     */
+    public static void render(Renderable[] overlayObjects) {
         newFrame();
 
         for (final Renderable obj : overlayObjects) {
@@ -47,6 +70,12 @@ public class Renderer {
         System.out.println(String.join("\n", frame));
     }
 
+    /**
+     * Gets the real length of a string by ignoring the color codes
+     *
+     * @param str the string to get the length of
+     * @return the real length of the string
+     */
     private static int getRealLength(String str) {
         int length = 0;
         for (int i = 0; i < str.length(); i++) {
@@ -61,6 +90,12 @@ public class Renderer {
         return length;
     }
 
+    /**
+     * Removes the color codes from a string array
+     *
+     * @param strs the string array to remove the color codes from
+     * @return the string array without the color codes
+     */
     private static String[] filterColor(String[] strs) {
         for (int i = 0; i < strs.length; i++) {
             strs[i] = strs[i].replaceAll("\u001B\\[[;\\d]*m", "");
@@ -68,6 +103,9 @@ public class Renderer {
         return strs;
     }
 
+    /**
+     * Adds an overlay to the frame
+     */
     private static void addOverlay(Overlay overlay) {
         String[] overlayArr = overlay.overlayArr();
         final Position position = overlay.position();
@@ -81,6 +119,7 @@ public class Renderer {
             xLength = Math.max(xLength, getRealLength(s));
         }
 
+        // Calculate the offset
         final int xOffset = switch (position.getHorizontalAlignment()) {
             case LEFT -> 0;
             case MIDDLE -> -xLength / 2;
@@ -92,6 +131,7 @@ public class Renderer {
             case BOTTOM -> -length;
         };
 
+        // Put the overlay into the frame
         for (int i = 0; i < overlayArr.length; i++) {
             final int row = position.getY() + i + yOffset;
             if (row < 0 || row >= frame.length) {
@@ -112,18 +152,33 @@ public class Renderer {
         }
     }
 
+    /**
+     * Hides the cursor
+     */
     public static void hideCursor() {
         runCommand("tput civis", "Error hiding cursor ");
     }
 
+    /**
+     * Shows the cursor
+     */
     public static void showCursor() {
         runCommand("tput cnorm", "Error showing cursor ");
     }
 
+    /**
+     * Clears the game
+     */
     public static void clearGame() {
         runCommand("clear && printf \"\\e[3j\"", "Error showing cursor ");
     }
 
+    /**
+     * Runs a command
+     *
+     * @param command      the command to run
+     * @param errorMessage the error message to print if the command fails
+     */
     private static void runCommand(String command, String errorMessage) {
         try {
             new ProcessBuilder("bash", "-c", command).inheritIO().start().waitFor();

@@ -1,5 +1,8 @@
 import Render.*;
 
+/**
+ * The bird
+ */
 public class Bird implements Renderable {
     private static final int width = 4;
     private static final int height = 3;
@@ -9,6 +12,7 @@ public class Bird implements Renderable {
             " \\(" + Colors.WHITE.apply(".") + Colors.YELLOW.apply(")") + Colors.RED.apply("<"),
             " (" + Colors.WHITE.apply("___") + Colors.YELLOW.apply(")"),
     });
+
     private static final String[] birdArrFlap = Colors.YELLOW.apply(new String[]{
             "   _  ",
             " /(" + Colors.WHITE.apply(".") + Colors.YELLOW.apply(")") + Colors.RED.apply("<"),
@@ -27,6 +31,9 @@ public class Bird implements Renderable {
     private final static double gravity = 100;
     private final static double jumpVel = 30;
 
+    /**
+     * Every frame the bird decrements its flap counter and goes down. Jumping resets this
+     */
     public void update() {
         if (flap > 0) {
             flap -= 1;
@@ -41,39 +48,68 @@ public class Bird implements Renderable {
         }
     }
 
+    /**
+     * Makes the bird jump
+     */
     public void jump() {
         yVel = -jumpVel;
         flap = 12;
     }
 
+    /**
+     * @return the bird drawing, whether it is flapping or not
+     */
     public String[] getBirdDrawing() {
         return flap > 0 ? birdArrFlap : birdArr;
     }
 
+    /**
+     * @return the x position of the bird
+     */
     public static int getX() {
         return x;
     }
 
+    /**
+     * @return the y position of the bird
+     */
     public int getY() {
         return (int) Math.round(y);
     }
 
+    /**
+     * @return the width and height of the bird
+     */
     public static int getWidth() {
         return width;
     }
 
+    /**
+     * @return the width and height of the bird
+     */
     public static int getHeight() {
         return height;
     }
 
+    /**
+     * @return if the bird is dead
+     */
     public boolean isDead() {
         return isDead;
     }
 
+    /**
+     * Sets if the bird is dead
+     *
+     * @param dead if the bird is dead
+     */
     public void setDead(boolean dead) {
         isDead = dead;
     }
 
+    /**
+     * @return the overlay of the bird
+     */
     @Override
     public Overlay getOverlay() {
         return new Overlay(getBirdDrawing(), new Position(getX(), getY()));

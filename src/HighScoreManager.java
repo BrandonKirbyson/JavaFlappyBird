@@ -2,10 +2,17 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class HighScoreManager {
+/**
+ * A class for managing the high score
+ */
+public final class HighScoreManager {
     private static final String HIGH_SCORE_FILE_PATH = "data/" + "highscore.txt";
 
-    public static int getHighScore() {
+    /**
+     * @return the current high score
+     * @throws RuntimeException if the file cannot be read
+     */
+    public static int getHighScore() throws RuntimeException {
         String projectRootPath = new File("").getAbsolutePath();
         File file = new File(projectRootPath, HIGH_SCORE_FILE_PATH);
         file.getParentFile().mkdirs();
@@ -19,7 +26,13 @@ public class HighScoreManager {
         }
     }
 
-    public static void setHighScore(int score) {
+    /**
+     * Sets the high score
+     *
+     * @param score the new high score
+     * @throws RuntimeException if the file cannot be written to
+     */
+    public static void setHighScore(int score) throws RuntimeException {
         System.out.println(score + " |" + HighScoreManager.getHighScore());
         if (score < HighScoreManager.getHighScore()) return;
 
@@ -34,6 +47,5 @@ public class HighScoreManager {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 }

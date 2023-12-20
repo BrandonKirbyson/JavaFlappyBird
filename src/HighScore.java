@@ -1,6 +1,13 @@
 import Render.*;
 
-public class HighScore implements Renderable {
+/**
+ * High score screen
+ */
+public final class HighScore implements Renderable {
+    /**
+     * @return the overlay to render
+     * @see HighScoreManager
+     */
     @Override
     public Overlay getOverlay() {
         return new Overlay(

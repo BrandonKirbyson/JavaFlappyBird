@@ -1,12 +1,23 @@
 import Render.*;
 
-public class LoadingBar implements Renderable {
+/**
+ * Loading bar screen
+ */
+public final class LoadingBar implements Renderable {
     private final int progress;
 
+    /**
+     * Creates a new LoadingBar object
+     *
+     * @param progress the progress of the loading bar
+     */
     public LoadingBar(int progress) {
         this.progress = progress;
     }
 
+    /**
+     * @return the loading bar based on the progress value
+     */
     @Override
     public Overlay getOverlay() {
         return new Overlay(

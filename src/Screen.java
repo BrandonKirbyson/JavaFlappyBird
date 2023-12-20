@@ -1,8 +1,17 @@
 import Render.*;
 
-public class Screen implements Renderable {
+/**
+ * The screen is the conductor for which screen to render
+ */
+public final class Screen implements Renderable {
     private final GameScreen gameScreen;
 
+    /**
+     * Centers a string with padding around it
+     *
+     * @param s the string to center
+     * @return the centered string
+     */
     private static String centerString(String s) {
         int totalPadding = (Screen.rowWidth - s.length());
         int paddingEachSide = totalPadding / 2;
@@ -23,13 +32,23 @@ public class Screen implements Renderable {
             Colors.GREEN.apply("Your best score is: 0"),
     };
 
+    /**
+     * Creates a new screen
+     *
+     * @param screen the screen to render
+     * @param s      the score to render
+     */
     public Screen(GameScreen screen, int s) {
         gameScreen = screen;
         score = s;
     }
 
+    /**
+     * @return switches between the different screens
+     */
     @Override
     public Overlay getOverlay() {
+        // Game over screen
         final String[] gameOver = new String[]{
                 "+-----------------------------------------------------+",
                 "|                                                     |",
