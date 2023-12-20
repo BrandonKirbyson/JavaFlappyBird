@@ -52,8 +52,7 @@ public class Game {
                     bird.setDead(true);
                 }
 
-                ArrayList<Renderable> renderObjects = new ArrayList<>();
-                renderObjects.addAll(obstacles.getPipes());
+                ArrayList<Renderable> renderObjects = new ArrayList<>(obstacles.getPipes());
                 renderObjects.add(bird);
                 renderObjects.add(new Screen(GameScreen.GAME, score));
 
@@ -61,8 +60,7 @@ public class Game {
             } else {
                 HighScoreManager.setHighScore(score);
 
-                ArrayList<Renderable> renderObjects = new ArrayList<>();
-                renderObjects.addAll(obstacles.getPipes());
+                ArrayList<Renderable> renderObjects = new ArrayList<>(obstacles.getPipes());
                 renderObjects.add(bird);
                 renderObjects.add(new Screen(GameScreen.GAME_OVER, score));
 

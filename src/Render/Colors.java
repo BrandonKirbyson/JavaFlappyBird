@@ -1,5 +1,6 @@
 package Render;
 
+@SuppressWarnings("unused")
 public enum Colors {
     BLACK("\u001B[30m"),
     RED("\u001B[31m"),

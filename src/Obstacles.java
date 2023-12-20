@@ -22,7 +22,7 @@ public class Obstacles {
 
     private void addPipe() {
         int gapSize = (int) Math.round(Math.random() * 10 + 10);
-        int gapY = (int) Math.round(Math.random() * (Renderer.getHeight() - gapSize / 2)) + gapSize / 16;
+        int gapY = (int) Math.round(Math.random() * (Renderer.getHeight() - (double) gapSize / 2)) + gapSize / 16;
         pipes.add(new Pipe(gapY, gapSize));
     }
 

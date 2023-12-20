@@ -5,10 +5,6 @@ import java.nio.file.Paths;
 public class HighScoreManager {
     private static final String HIGH_SCORE_FILE_PATH = "data/" + "highscore.txt";
 
-    public static int getHighScoreLength() {
-        return String.valueOf(getHighScore()).length();
-    }
-
     public static int getHighScore() {
         String projectRootPath = new File("").getAbsolutePath();
         File file = new File(projectRootPath, HIGH_SCORE_FILE_PATH);
@@ -39,28 +35,5 @@ public class HighScoreManager {
             throw new RuntimeException(e);
         }
 
-//        try {
-//            String projectRootPath = new File("").getAbsolutePath();
-//            File file = new File(projectRootPath, HIGH_SCORE_FILE_PATH);
-//            if (!file.exists()) {
-//                file.getParentFile().mkdirs();
-//                file.createNewFile();
-//            }
-//
-//            try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-//                    new FileOutputStream(file), StandardCharsets.UTF_8))) {
-//
-//                System.out.println(score + " |" + HighScoreManager.getHighScore());
-//
-//                if (score > getHighScore()) {
-//                    writer.write(String.valueOf(score));
-//                } else {
-//                    writer.write(String.valueOf(getHighScore()));
-//                }
-//
-//            }
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 }

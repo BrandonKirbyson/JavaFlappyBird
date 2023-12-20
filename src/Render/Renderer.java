@@ -72,7 +72,7 @@ public class Renderer {
         String[] overlayArr = overlay.overlayArr();
         final Position position = overlay.position();
 
-        overlayArr = filterColor(overlayArr);
+        filterColor(overlayArr);
 
         int length = overlayArr.length;
 

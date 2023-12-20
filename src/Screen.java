@@ -11,7 +11,7 @@ public class Screen implements Renderable {
         return repeat + s + repeat + extraSpace;
     }
 
-    private int score;
+    private final int score;
 
     private static final int rowWidth = 53;
     private static final int highScore = HighScoreManager.getHighScore();
