@@ -33,10 +33,7 @@ public final class HighScoreManager {
      * @throws RuntimeException if the file cannot be written to
      */
     public static void setHighScore(int score) throws RuntimeException {
-        System.out.println(score + " |" + HighScoreManager.getHighScore());
         if (score < HighScoreManager.getHighScore()) return;
-
-        System.out.println("Setting high score to " + score);
 
         try {
             String projectRootPath = new File("").getAbsolutePath();
