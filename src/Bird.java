@@ -1,11 +1,27 @@
 import Render.*;
 
+import java.util.HashMap;
+
 /**
  * The bird
  */
 public class Bird implements Renderable {
     private static final int width = 4;
     private static final int height = 3;
+
+
+    private static final HashMap<Integer, String[]> birdArrMap = new HashMap<>() {{
+        put(0,new String[]{
+                "\\   ",
+                " \\(.)<",
+                " (__) ",
+        });
+        put(1,new String[]{
+                "    ",
+                "  (.)<",
+                "/(__) ",
+        });
+    }};
 
     private static final String[] birdArr = Colors.YELLOW.apply(new String[]{
             "\\  _  ",
@@ -60,7 +76,7 @@ public class Bird implements Renderable {
      * @return the bird drawing, whether it is flapping or not
      */
     public String[] getBirdDrawing() {
-        return flap > 0 ? birdArrFlap : birdArr;
+        return flap > 0 ? birdArrMap.get(1) : birdArrMap.get(0);
     }
 
     /**
