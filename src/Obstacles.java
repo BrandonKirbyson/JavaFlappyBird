@@ -103,13 +103,19 @@ public final class Obstacles {
     /**
      * @return the current pipe
      */
-    public Pipe getCurrentPipe() {
-        Pipe closest = pipes.get(0);
-        for (Pipe pipe : pipes) {
-            if ((pipe.getX() + (Pipe.getWidth() / 2)) > Bird.getX() && pipe.getX() < closest.getX()) {
-                closest = pipe;
+    public Pipe getCurrentPipe(int offset) {
+        int closest = pipes.size() - 1;
+        for (int i = 0; i < pipes.size(); i++) {
+            Pipe pipe = pipes.get(i);
+            if (pipe.getX() + Pipe.getWidth() / 2 + 2 > Bird.getX() && pipe.getX() < pipes.get(closest).getX()) {
+                closest = i;
             }
         }
-        return closest;
+        if(closest + offset < pipes.size()) return pipes.get(closest + offset);
+        else return pipes.get(closest);
+    }
+
+    public Pipe getCurrentPipe() {
+        return getCurrentPipe(0);
     }
 }

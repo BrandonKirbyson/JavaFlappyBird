@@ -64,6 +64,14 @@ public final class Pipe implements Renderable {
         return gapY;
     }
 
+
+    /**
+     * @return the size of the gap
+     */
+    public int getGapSize() {
+        return gapSize;
+    }
+
     /**
      * Sets the x position of the pipe
      */
