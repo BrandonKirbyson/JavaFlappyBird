@@ -1,7 +1,6 @@
 import Render.Renderable;
 import Render.Renderer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
