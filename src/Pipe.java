@@ -45,7 +45,7 @@ public final class Pipe implements Renderable {
      */
     public boolean checkCollision(int birdY) {
         if (x < Bird.getX() + (double) Bird.getWidth() / 2 + (double) width / 2 && x > Bird.getX() - (double) Bird.getWidth() / 2 - (double) width / 2) {
-            return birdY < gapY - gapSize / 2 + Bird.getHeight() / 2 || birdY > gapY + gapSize / 2 - Bird.getHeight() / 2;
+            return birdY < gapY - gapSize / 2 + Bird.getHeight() / 2 - 1 || birdY > gapY + gapSize / 2 - Bird.getHeight() / 2;
         }
         return false;
     }
