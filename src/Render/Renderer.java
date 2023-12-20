@@ -96,7 +96,7 @@ public final class Renderer {
      * @param strs the string array to remove the color codes from
      * @return the string array without the color codes
      */
-    private static String[] filterColor(String[] strs) {
+    public static String[] filterColor(String[] strs) {
         for (int i = 0; i < strs.length; i++) {
             strs[i] = strs[i].replaceAll("\u001B\\[[;\\d]*m", "");
         }
@@ -116,7 +116,8 @@ public final class Renderer {
 
         int xLength = 0;
         for (String s : overlayArr) {
-            xLength = Math.max(xLength, getRealLength(s));
+//            xLength = Math.max(xLength, getRealLength(s));
+            xLength = Math.max(xLength, s.length());
         }
 
         // Calculate the offset
@@ -138,6 +139,10 @@ public final class Renderer {
                 continue;
             }
             final String overlayRow = overlayArr[i];
+//            int spacing = overlayRow.length() - getRealLength(overlayRow);
+//            System.out.println(spacing);
+//            overlayArr[i] = " ".repeat(spacing / 2) + overlayRow + " ".repeat(spacing / 2);
+//            overlayRow = overlayArr[i];
             for (int j = 0; j < overlayRow.length(); j++) {
                 final int col = position.getX() + j + xOffset;
                 if (col < 0 || col >= frame[row].length()) {
