@@ -62,6 +62,10 @@ public class Bird implements Renderable {
             yVel = 0;
             isDead = true;
         }
+        if(y <= birdArr.length / 2){
+            y = birdArr.length / 2;
+            yVel = 0;
+        }
     }
 
     /**
